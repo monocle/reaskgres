@@ -11,3 +11,14 @@ services:
     volumes:
       - ./frontend:/frontend
       - /frontend/node_modules
+  backend:
+    build:
+      context: backend
+      target: build-image
+    image: reaskgres-backend
+    restart: always
+    ports:
+      - 5002:5000
+      - 5678:5678
+    volumes:
+      - ./backend:/home/appuser/backend

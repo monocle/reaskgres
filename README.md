@@ -21,11 +21,9 @@ The following frontend setup will be used via Vite tooling:
 The following backend setup will be used:
 
 * Flask, Flask SQLAlchemy, Flask Migrate
-* Pipenv
 * mypy
-* Pytest
-* Black
-* isort
+* Pytest, Pytest-cov
+* Black, isort
 
 ## Getting Started
 

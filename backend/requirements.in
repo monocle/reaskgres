@@ -1,0 +1,10 @@
+flask
+flask-migrate
+flask-sqlalchemy
+psycopg2-binary
+
+black
+isort
+mypy
+pytest
+pytest-cov
