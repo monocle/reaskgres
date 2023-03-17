@@ -29,6 +29,5 @@ The following backend setup will be used:
 
 1. Clone the repo.
 1. Make sure Docker Desktop is running.
-1. Run `make up` from the project root directory to start the Vite frontend development server.
-1. Go to `http://localhost:5173/`.
+1. Run `docker compose up` or `make up` from the project root directory. This will start the Vite dev server at `http://localhost:5173/` and the Flask dev server at `http://localhost:5002/`.
 1. Begin hacking.
