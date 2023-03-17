@@ -1,10 +1,12 @@
 flask
 flask-migrate
 flask-sqlalchemy
-psycopg2-binary
+psycopg[binary,pool]
 
 black
 isort
 mypy
 pytest
 pytest-cov
+
+pip-tools

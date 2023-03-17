@@ -6,8 +6,8 @@ FROM python:3.11.2-slim-bullseye AS compile-image
 
 # If a new package is needed use:
 # apt-get -y install --no-install-recommends [package]
-RUN apt-get update && \
-    apt-get -y upgrade
+RUN apt update && \
+    apt -y upgrade
 
 # Activate the Python virtual environment
 RUN python -m venv /opt/venv

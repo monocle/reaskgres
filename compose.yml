@@ -11,14 +11,37 @@ services:
     volumes:
       - ./frontend:/frontend
       - /frontend/node_modules
-  backend:
+
+  backend: 
     build:
       context: backend
       target: build-image
     image: reaskgres-backend
     restart: always
+    env_file: .env
     ports:
       - 5002:5000
       - 5678:5678
     volumes:
       - ./backend:/home/appuser/backend
+    depends_on:
+      - database
+    networks:
+      - reaskgres
+
+  database:
+    image: postgres:15.2-alpine3.17
+    env_file: .env
+    restart: always
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - reaskgres
+
+networks:
+  reaskgres:
+
+volumes:
+  postgres-data:
