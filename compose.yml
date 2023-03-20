@@ -23,7 +23,7 @@ services:
       - 5002:5000
       - 5678:5678
     volumes:
-      - ./backend:/home/appuser/backend
+      - .:/home/appuser/src
     depends_on:
       - database
     networks:

@@ -10,11 +10,7 @@ To provide a Dockerized starting point for a new React+Flask project with a Post
 The following frontend setup will be used via Vite tooling:
 
 * TypeScript
-* React and React Router
-* Jest and React Testing Library
-* Tailwind
-* Prettier
-* ESLint
+* React
 
 ## Backend
 
@@ -29,5 +25,8 @@ The following backend setup will be used:
 
 1. Clone the repo.
 1. Make sure Docker Desktop is running.
-1. Run `docker compose up` or `make up` from the project root directory. This will start the Vite dev server at `http://localhost:5173/` and the Flask dev server at `http://localhost:5002/`.
+1. Run `make up` from the project root directory. This will start the:
+    * Vite dev server at `http://localhost:5173/`
+    * Flask dev server at `http://localhost:5002/`
+    * In addition, it will ensure "development" and "test" databases are in Postgres.
 1. Begin hacking.
