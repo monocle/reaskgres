@@ -27,6 +27,9 @@ backend_restart:
 backend_shell:
 	docker exec -it $(PROJ_NAME)-$(BACKEND)-1 /bin/bash
 
+backend_test:
+	docker exec -it $(PROJ_NAME)-$(BACKEND)-1 python scripts/auto_run_tests.py
+
 db_create:
 	docker exec $(PROJ_NAME)-$(BACKEND)-1 python scripts/db_create.py
 

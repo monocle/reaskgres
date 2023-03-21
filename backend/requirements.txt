@@ -93,6 +93,8 @@ typing-extensions==4.5.0
     #   psycopg
     #   psycopg-pool
     #   sqlalchemy
+watchdog==3.0.0
+    # via -r requirements.in
 werkzeug==2.2.3
     # via flask
 wheel==0.40.0
