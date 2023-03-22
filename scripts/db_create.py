@@ -1,8 +1,19 @@
+from time import sleep
+import psycopg
 from db import Postgres
 
 pg = Postgres()
-needed_db_names = pg.app_db_names - set(pg.database_names)
+db_online = False
 
+while not db_online:
+    try:
+        pg.connect()
+        db_online = True
+    except psycopg.OperationalError:
+        print("\nWaiting for database to come on line.")
+        sleep(1)
+
+needed_db_names = pg.app_db_names - set(pg.database_names)
 if needed_db_names:
     print("\nCreating databases:")
 
