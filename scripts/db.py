@@ -1,7 +1,9 @@
-from typing import List, Tuple
+from typing import List
 from dotenv import dotenv_values
 import psycopg as pg
 from psycopg.rows import dict_row, DictRow
+from psycopg.sql import SQL, Identifier
+from psycopg.abc import Query
 
 
 class Postgres:
@@ -34,7 +36,7 @@ class Postgres:
             autocommit=autocommit,
         )
 
-    def fetch_all(self, sql: str) -> List[DictRow]:
+    def fetch_all(self, sql: Query) -> List[DictRow]:
         with self.connect() as conn:
             with conn.cursor(row_factory=dict_row) as cursor:
                 return cursor.execute(sql).fetchall()
@@ -47,19 +49,15 @@ class Postgres:
         return self.fetch_all(sql)
 
     def create_database(self, name: str):
-        # Don't usually want to use unsanitzed inputs directly in
-        # SQL strings. However, using %s placeholder wasn't working.
-        sql = "CREATE DATABASE " + name
-
-        # Can't use transaction block for database creation
-        conn = self.connect(autocommit=True)
-        conn.execute(sql).close()
+        self._transact_database(SQL("CREATE DATABASE {}"), name)
 
     def drop_database(self, name: str):
-        sql = "DROP DATABASE " + name
-        conn = self.connect(autocommit=True)
-        conn.execute(sql).close()
+        self._transact_database(SQL("DROP DATABASE {}"), name)
 
     @property
     def database_names(self):
         return {db["datname"] for db in self.fetch_all_databases()}
+
+    def _transact_database(self, sql: SQL, db_name: str):
+        conn = self.connect(autocommit=True)
+        conn.execute(sql.format(Identifier(db_name))).close()
