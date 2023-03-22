@@ -12,7 +12,10 @@ class Postgres:
     host: str
     port: str
 
-    def __init__(self, env_vars=dotenv_values(".env")):
+    def __init__(self, env_vars=None):
+        if env_vars is None:
+            env_vars = dotenv_values(".env")
+
         for attr in ["user", "password", "host", "port"]:
             env_var_name = (self.db_prefix + "_" + attr).upper()
             value = env_vars.get(env_var_name)
