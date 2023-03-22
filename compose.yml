@@ -10,7 +10,7 @@ services:
       - 5173:5173
     volumes:
       - ./frontend:/frontend
-      - /frontend/node_modules
+      - node-modules:/frontend/node_modules
 
   backend: 
     build:
@@ -45,3 +45,4 @@ networks:
 
 volumes:
   postgres-data:
+  node-modules:
