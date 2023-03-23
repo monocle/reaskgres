@@ -3,18 +3,27 @@ BACKEND := backend
 FRONTEND := frontend
 DATABASE := database
 POSTGRES_USER := postgres
+POSTGRES_VOLUME := postgres-data
+FRONTEND_NODE_VOLUME := node-modules
 
 init:
 	/bin/bash scripts/set_project_name.sh
 	/bin/bash scripts/create_env_file.sh
 	@$(MAKE) up
 	@$(MAKE) db_create
+	@echo "Setup is complete. Docker containers are ready to be used."
+	@echo
 
 up:
 	docker compose up -d
 
 down:
 	docker compose down
+
+clean:
+	docker compose down
+	docker rmi $(PROJ_NAME)-$(BACKEND) $(PROJ_NAME)-$(FRONTEND)
+	docker volume rm $(PROJ_NAME)_$(POSTGRES_VOLUME) $(PROJ_NAME)_$(FRONTEND_NODE_VOLUME)
 
 backend_build:
 	docker compose stop $(BACKEND)

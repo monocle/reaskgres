@@ -9,8 +9,7 @@ while not db_online:
     try:
         pg.connect()
         db_online = True
-    except psycopg.OperationalError:
-        print("\nWaiting for database to come on line.")
+    except Exception as e:
         sleep(1)
 
 needed_db_names = pg.app_db_names - set(pg.database_names)

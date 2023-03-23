@@ -23,3 +23,4 @@ do
 done
 
 echo "Project name updated to: $project_name"
+echo
