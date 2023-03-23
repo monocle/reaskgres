@@ -6,6 +6,7 @@ POSTGRES_USER := postgres
 
 init:
 	/bin/bash scripts/set_project_name.sh
+	/bin/bash scripts/create_env_file.sh
 	@$(MAKE) up
 	@$(MAKE) db_create
 
