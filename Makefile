@@ -4,9 +4,13 @@ FRONTEND := frontend
 DATABASE := database
 POSTGRES_USER := postgres
 
+init:
+	/bin/bash scripts/set_project_name.sh
+	@$(MAKE) up
+	@$(MAKE) db_create
+
 up:
 	docker compose up -d
-	@$(MAKE) db_create
 
 down:
 	docker compose down
