@@ -44,6 +44,9 @@ backend_shell:
 backend_test:
 	docker exec -it $(PROJ_NAME)-$(BACKEND)-1 python scripts/auto_run_tests.py
 
+backend_test_cov:
+	docker exec -it $(PROJ_NAME)-$(BACKEND)-1 pytest --cov=backend/src/app --cov-report=term-missing 
+
 db_create:
 	docker exec $(PROJ_NAME)-$(BACKEND)-1 python scripts/db_create.py
 
