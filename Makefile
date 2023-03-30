@@ -59,6 +59,9 @@ db_shell:
 frontend_logs:
 	docker compose logs -f $(FRONTEND)
 
+frontend_test:
+	docker exec -it $(PROJ_NAME)-$(FRONTEND)-1 npm run test
+
 list:
 	@echo
 	@echo "Available targets:"
